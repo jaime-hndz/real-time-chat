@@ -1,14 +1,16 @@
 import { FC } from "react"
+import { MessageType } from "../interfaces/MessageType"
+import { MessageContainer } from "./MessageContainer"
 
 interface Props {
-    messages: {}
+    Messages: MessageType[]
 }
 
-export const Chat:FC<Props> = ({messages}) => {
+export const Chat:FC<Props> = ({Messages}) => {
     return (
         <>
-          <div>
-            
+          <div className="chat">
+            <MessageContainer Messages={Messages} />
           </div>  
         </>
     )

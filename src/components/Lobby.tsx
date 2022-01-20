@@ -17,7 +17,7 @@ export const Lobby:FC<Props> = ({joinRoom}) => {
         }}>
             <Form.Group> 
                 <Form.Control placeholder="name" onChange={(e:any) => setUser(e.target.value)} />
-                <Form.Control placeholder="name" onChange={(e:any) => setRoom(e.target.value)} />
+                <Form.Control placeholder="room" onChange={(e:any) => setRoom(e.target.value)} />
             </Form.Group>
             <Button variant="success" type="submit" disabled={!user || !room}>Join</Button>
         </Form>

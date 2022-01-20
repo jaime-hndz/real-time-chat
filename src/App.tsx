@@ -3,12 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Lobby } from './components/Lobby';
 import {HubConnection, HubConnectionBuilder, LogLevel} from '@microsoft/signalr';
 import { useState } from 'react';
+import { Chat } from './components/Chat';
+import {MessageType} from '../src/interfaces/MessageType'
 
 
 function App() {
 
   const [connection, setConnection] = useState<HubConnection>();
-  const [messages, setMessages] = useState([{}])
+  const [messages, setMessages] = useState<MessageType[]>([])
 
   const joinRoom = async(user:string, room:string)=>{
   
@@ -35,7 +37,9 @@ function App() {
     <div className="app">
       <h2>MyChat</h2>
       <hr />
-      <Lobby joinRoom={joinRoom} />
+      {!connection
+       ? <Lobby joinRoom={joinRoom} />
+       : <Chat Messages={messages} />}
     </div>
   );
 }
