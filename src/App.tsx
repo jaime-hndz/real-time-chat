@@ -24,6 +24,11 @@ function App() {
         setMessages(messages => [...messages, {user, message}])
       })
 
+      connection.onclose(e =>{
+        setConnection(undefined);
+        setMessages([]);
+      })
+
       await connection.start();
       await connection.invoke("JoinRoom", {user, room});
       setConnection(connection)
@@ -33,13 +38,28 @@ function App() {
     }
   }
 
+  const closeConnection = async () =>{
+    try {
+      await connection?.stop();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const sendMessage =async (message:string) => {
+    try {
+      await connection?.invoke("SendMessage", message);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="app">
       <h2>MyChat</h2>
       <hr />
       {!connection
        ? <Lobby joinRoom={joinRoom} />
-       : <Chat Messages={messages} />}
+       : <Chat Messages={messages} SendMessage={sendMessage} CloseConnection={closeConnection} />}
     </div>
   );
 }

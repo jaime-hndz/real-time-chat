@@ -9,7 +9,7 @@ interface Props {
 
 export const MessageContainer:FC<Props> = ({Messages}) => {
     return (
-        <div className="massage-container">
+        <div className="message-container">
             {Messages.map((m,index)=>{
                 return(
                     <div key={index} className="user-message">
