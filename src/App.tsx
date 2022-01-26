@@ -10,7 +10,8 @@ import {MessageType} from '../src/interfaces/MessageType'
 function App() {
 
   const [connection, setConnection] = useState<HubConnection>();
-  const [messages, setMessages] = useState<MessageType[]>([])
+  const [messages, setMessages] = useState<MessageType[]>([]);
+  const [users, setUsers] = useState([]);
 
   const joinRoom = async(user:string, room:string)=>{
   
@@ -20,6 +21,10 @@ function App() {
       .configureLogging(LogLevel.Information)
       .build();
 
+      connection.on("UsersInRoom", (users) => {
+        setUsers(users);
+      });
+
       connection.on("RecieveMessage", (user, message) =>{
         setMessages(messages => [...messages, {user, message}])
       })
@@ -27,6 +32,7 @@ function App() {
       connection.onclose(e =>{
         setConnection(undefined);
         setMessages([]);
+        setUsers([]);
       })
 
       await connection.start();
@@ -55,11 +61,11 @@ function App() {
   }
   return (
     <div className="app">
-      <h2>MyChat</h2>
+      <h2>Jaime Chat</h2>
       <hr />
       {!connection
        ? <Lobby joinRoom={joinRoom} />
-       : <Chat Messages={messages} SendMessage={sendMessage} CloseConnection={closeConnection} />}
+       : <Chat Messages={messages} SendMessage={sendMessage} CloseConnection={closeConnection} Users={users} />}
     </div>
   );
 }

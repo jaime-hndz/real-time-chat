@@ -7,7 +7,7 @@ h2 {
 }
 
 h6 {
-  color: greenyellow;
+  color: rgb(0, 204, 255);
 }
 
 hr.line {
@@ -20,6 +20,7 @@ hr.line {
   padding-top: 40px;
   width: 950px;
   text-align: center;
+  
 }
 
 .lobby {
@@ -65,7 +66,7 @@ hr.line {
   padding: 5px;
   font-size: 18px;
   color:white;
-  border-radius: 20px;
+  border-radius: 5px;
   margin-top: 3px;
 }
 

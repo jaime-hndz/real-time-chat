@@ -16,10 +16,10 @@ export const Lobby:FC<Props> = ({joinRoom}) => {
             joinRoom(user,room);
         }}>
             <Form.Group> 
-                <Form.Control placeholder="name" onChange={(e:any) => setUser(e.target.value)} />
-                <Form.Control placeholder="room" onChange={(e:any) => setRoom(e.target.value)} />
+                <Form.Control placeholder="nombre" onChange={(e:any) => setUser(e.target.value)} />
+                <Form.Control placeholder="sala" onChange={(e:any) => setRoom(e.target.value)} />
             </Form.Group>
-            <Button variant="success" type="submit" disabled={!user || !room}>Join</Button>
+            <Button variant="success" type="submit" disabled={!user || !room}>Unirse</Button>
         </Form>
     )
 }
